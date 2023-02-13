@@ -17,13 +17,13 @@ public class ClearCounter : MonoBehaviour
             kitchenObjectTransform.localPosition = Vector3.zero;
 
             kitchenObject = kitchenObjectTransform.GetComponent<KitchenObject>();
-            kitchenObject.SetClearCounter(this);
+            kitchenObject.ClearCounter = this;
 
             Debug.Log("Interacted with table and spawned a " + kitchenObjectSO.name);
         }
         else
         {
-            Debug.Log( "DOLU" + kitchenObject.GetClearCounter().name);
+            Debug.Log( "DOLU" + kitchenObject.ClearCounter.name);
         }
     }
 }

@@ -5,20 +5,12 @@ using UnityEngine;
 public class KitchenObject : MonoBehaviour
 {
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
-    private ClearCounter clearCounter;
-    
+    public ClearCounter ClearCounter { get; set; }
+
     public KitchenObjectSO GetKitchenObjectSO()
     {
         return kitchenObjectSO;
     }
 
-    public void SetClearCounter(ClearCounter clearCounter)
-    {
-        this.clearCounter = clearCounter;
-    }
-
-    public ClearCounter GetClearCounter()
-    {
-        return this.clearCounter;
-    }
+    
 }
