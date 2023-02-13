@@ -15,7 +15,6 @@ public class KitchenObject : MonoBehaviour
     private ClearCounter clearCounter;
 
     
-    
     public KitchenObjectSO GetKitchenObjectSO()
     {
         return kitchenObjectSO;
@@ -25,10 +24,27 @@ public class KitchenObject : MonoBehaviour
     {
         return clearCounter;
     }
-
-    private void SetClearCounter(ClearCounter clearCounter)
+    
+    private void SetClearCounter(ClearCounter cCounter)
     {
-        this.clearCounter = clearCounter;
+        if (cCounter.HasKitchenObject())
+        {
+            Debug.Log("this clear counter already has kitchen object");
+        }
+        
+        if (clearCounter != null)
+        {
+            clearCounter.ClearKitchenObject();
+        }
+        
+        clearCounter = cCounter;
+
+        cCounter.KitchenObject = this;
+        
+        transform.parent = cCounter.GetCounterTopPoint();
+        transform.localPosition = Vector3.zero;
     }
+    
+    
     
 }
