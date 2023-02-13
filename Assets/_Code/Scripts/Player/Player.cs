@@ -8,9 +8,9 @@ public class Player : MonoBehaviour
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     public class OnSelectedCounterChangedEventArgs : EventArgs
     {
-        public ClearCounter selectedCounter;
+        public ClearCounter SelectedCounter;
     }
-
+    
     public static Player Instance { get; private set; }
     
     [SerializeField] private float moveSpeed;
@@ -130,13 +130,15 @@ public class Player : MonoBehaviour
         return isWalking;
     }
 
-    private void SetSelectedCounter(ClearCounter selectedCounter)
+    private void SetSelectedCounter(ClearCounter sCounter)
     {
-        this.selectedCounter = selectedCounter;
+        selectedCounter = sCounter;
         
-        OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs
+        OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs()
         {
-            selectedCounter = selectedCounter
+            SelectedCounter = selectedCounter
         });
     }
+    
+    
 }
