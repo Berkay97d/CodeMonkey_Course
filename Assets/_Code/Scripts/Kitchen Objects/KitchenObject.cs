@@ -13,7 +13,8 @@ public class KitchenObject : MonoBehaviour
     }
     
     private IKitchenObjectParent kitchenObjectParent;
-
+    
+    
     
     public KitchenObjectSO GetKitchenObjectSO()
     {

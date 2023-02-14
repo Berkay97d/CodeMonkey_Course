@@ -1,14 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class ClearCounter : Counter
+﻿using UnityEngine;
+public class ContainerCounter : Counter 
 {
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
-    
-    
-    public override void Interact(Player player)
+
+    public override void  Interact(Player player)
     {
         if (player.KitchenObject != null)
         {
@@ -16,12 +11,12 @@ public class ClearCounter : Counter
             Debug.Log("PLAYERIN ELİ DOLU");
             return;
         }
-        
+    
         if (KitchenObject == null)
         {
             var kitchenObjectTransform = Instantiate(kitchenObjectSO.Prefab, counterTopPoint);
             kitchenObjectTransform.GetComponent<KitchenObject>().KitchenObjectParent = this;
-            
+        
             Debug.Log("Interacted with " + name +  " and spawned a " + kitchenObjectSO.name);
         }
         else
@@ -30,6 +25,6 @@ public class ClearCounter : Counter
             KitchenObject.KitchenObjectParent = player;
         }
     }
-
+   
     
 }
