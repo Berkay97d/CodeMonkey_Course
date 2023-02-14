@@ -18,6 +18,11 @@ public class Counter : MonoBehaviour, IKitchenObjectParent
     {
         Debug.LogError("BURAYA NASIL GİRDİN AMQ ?");
     }
+    
+    public virtual void InteractSecondary(Player player)
+    {
+        Debug.LogError("This table doesn't have a secondary action");
+    }
 
     public Transform GetKitchenObjectCarryTransform()
     {
