@@ -15,8 +15,7 @@ public class ContainerCounter : Counter
             return;
         }
 
-        var kitchenObjTransform = Instantiate(kitchenObjectSO.Prefab);
-        kitchenObjTransform.GetComponent<KitchenObject>().KitchenObjectParent = player;
+        KitchenObject.SpawnKitchenObject(kitchenObjectSO, player);
         
         OnPlayerGrabbedObject?.Invoke(this, EventArgs.Empty);
     }
