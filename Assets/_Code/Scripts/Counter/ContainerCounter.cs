@@ -7,23 +7,13 @@ public class ContainerCounter : Counter
     {
         if (player.KitchenObject != null)
         {
-            player.KitchenObject.KitchenObjectParent = this;
             Debug.Log("PLAYERIN ELİ DOLU");
             return;
         }
-    
-        if (KitchenObject == null)
-        {
-            var kitchenObjectTransform = Instantiate(kitchenObjectSO.Prefab, counterTopPoint);
-            kitchenObjectTransform.GetComponent<KitchenObject>().KitchenObjectParent = this;
-        
-            Debug.Log("Interacted with " + name +  " and spawned a " + kitchenObjectSO.name);
-        }
-        else
-        {
-            Debug.Log("Kitchen object " + kitchenObjectSO.name + " gived to Player");
-            KitchenObject.KitchenObjectParent = player;
-        }
+
+        var kitchenObjTransform = Instantiate(kitchenObjectSO.Prefab);
+        kitchenObjTransform.GetComponent<KitchenObject>().KitchenObjectParent = player;
+
     }
    
     

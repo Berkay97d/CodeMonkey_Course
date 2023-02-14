@@ -19,7 +19,7 @@ public class ClearCounter : Counter
         
         if (KitchenObject == null)
         {
-            var kitchenObjectTransform = Instantiate(kitchenObjectSO.Prefab, counterTopPoint);
+            var kitchenObjectTransform = Instantiate(kitchenObjectSO.Prefab);
             kitchenObjectTransform.GetComponent<KitchenObject>().KitchenObjectParent = this;
             
             Debug.Log("Interacted with " + name +  " and spawned a " + kitchenObjectSO.name);
