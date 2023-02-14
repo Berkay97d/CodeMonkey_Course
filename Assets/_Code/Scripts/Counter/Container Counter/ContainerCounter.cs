@@ -11,7 +11,7 @@ public class ContainerCounter : Counter
     {
         if (player.KitchenObject != null)
         {
-            Debug.Log("PLAYERIN ELİ DOLU");
+            TryPutKitchenObjectBack(player, kitchenObjectSO);
             return;
         }
 
@@ -19,7 +19,14 @@ public class ContainerCounter : Counter
         
         OnPlayerGrabbedObject?.Invoke(this, EventArgs.Empty);
     }
-   
-    
+
+    private void TryPutKitchenObjectBack(Player player, KitchenObjectSO container)
+    {
+        if (player.KitchenObject.GetKitchenObjectSO() == container)
+        {
+            player.KitchenObject.DestroySelf();
+            OnPlayerGrabbedObject?.Invoke(this, EventArgs.Empty);
+        }
+    }
     
 }
