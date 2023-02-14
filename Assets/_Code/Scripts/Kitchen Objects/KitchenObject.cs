@@ -30,7 +30,7 @@ public class KitchenObject : MonoBehaviour
     {
         if (kObjectParent.HasKitchenObject())
         {
-            Debug.Log("this clear counter already has kitchen object");
+            Debug.Log("this object already has kitchen object");
             return;
         }
         

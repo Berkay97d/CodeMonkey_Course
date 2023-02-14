@@ -10,25 +10,28 @@ public class ClearCounter : Counter
     
     public override void Interact(Player player)
     {
-        if (player.KitchenObject != null)
-        {
-            player.KitchenObject.KitchenObjectParent = this;
-            Debug.Log("PLAYERIN ELİ DOLU");
-            return;
-        }
-        
         if (KitchenObject == null)
         {
-            var kitchenObjectTransform = Instantiate(kitchenObjectSO.Prefab);
-            kitchenObjectTransform.GetComponent<KitchenObject>().KitchenObjectParent = this;
-            
-            Debug.Log("Interacted with " + name +  " and spawned a " + kitchenObjectSO.name);
+            if (player.KitchenObject != null)
+            {
+                player.KitchenObject.KitchenObjectParent = this;
+                Debug.Log("PUTTED");
+                return;
+            }
+
+            Debug.Log("NOTHING TO PUT OR TAKE");
+            return;
         }
-        else
+
+        if (player.KitchenObject == null)
         {
-            Debug.Log("Kitchen object " + kitchenObjectSO.name + " gived to Player");
             KitchenObject.KitchenObjectParent = player;
+            Debug.Log("GRABBED");
+            return;
         }
+
+        Debug.Log("BOTH FULL");
+        
     }
 
     
