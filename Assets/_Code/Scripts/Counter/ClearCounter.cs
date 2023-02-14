@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClearCounter : MonoBehaviour
+public class ClearCounter : MonoBehaviour, IKitchenObjectParent
 {
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
     [SerializeField] private Transform counterTopPoint;
@@ -16,51 +16,33 @@ public class ClearCounter : MonoBehaviour
         set => SetKitchenObject(value);
     }
     
-    
-    
-    [SerializeField] private bool testing;
-    [SerializeField] private ClearCounter secondCounter;
-    
 
-    private void Update()
+    public void Interact(Player player)
     {
-        if (testing && Input.GetKeyDown(KeyCode.T))
+        if (player.KitchenObject != null)
         {
-            if (kitchenObject != null)
-            {
-                kitchenObject.ClearCounter = secondCounter;
-            }
+            player.KitchenObject.KitchenObjectParent = this;
+            Debug.Log("PLAYERIN ELİ DOLU");
+            return;
         }
-    }
-
-    public void Interact()
-    {
+        
         if (kitchenObject == null)
         {
             var kitchenObjectTransform = Instantiate(kitchenObjectSO.Prefab, counterTopPoint);
-            kitchenObjectTransform.GetComponent<KitchenObject>().ClearCounter = this;
+            kitchenObjectTransform.GetComponent<KitchenObject>().KitchenObjectParent = this;
             
-            Debug.Log("Interacted with table and spawned a " + kitchenObjectSO.name);
+            Debug.Log("Interacted with " + name +  " and spawned a " + kitchenObjectSO.name);
         }
         else
         {
-            Debug.Log( "DOLU" + kitchenObject.ClearCounter.name);
+            Debug.Log("Kitchen object " + kitchenObjectSO.name + " gived to Player");
+            kitchenObject.KitchenObjectParent = player;
         }
     }
 
-    public Transform GetCounterTopPoint()
+    public Transform GetKitchenObjectCarryTransform()
     {
         return counterTopPoint;
-    }
-
-    private void SetKitchenObject(KitchenObject kitchenObject)
-    {
-        this.kitchenObject = kitchenObject;
-    }
-
-    private KitchenObject GetKitchenObject()
-    {
-        return kitchenObject;
     }
 
     public void ClearKitchenObject()
@@ -71,5 +53,15 @@ public class ClearCounter : MonoBehaviour
     public bool HasKitchenObject()
     {
         return kitchenObject != null;
+    }
+    
+    private void SetKitchenObject(KitchenObject kitchenObject)
+    {
+        this.kitchenObject = kitchenObject;
+    }
+
+    private KitchenObject GetKitchenObject()
+    {
+        return kitchenObject;
     }
 }
