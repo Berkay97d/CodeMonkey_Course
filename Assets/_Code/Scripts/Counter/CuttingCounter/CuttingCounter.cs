@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CuttingCounter : Counter
 {
+    public event EventHandler OnPlayerCutObject;
+    
     public override void Interact(Player player)
     {
         if (KitchenObject == null)
@@ -34,6 +37,7 @@ public class CuttingCounter : Counter
     {
         if (HasKitchenObject() && !player.HasKitchenObject())
         {
+            OnPlayerCutObject?.Invoke(this, EventArgs.Empty);
             Debug.Log("KES");
         }
     }
