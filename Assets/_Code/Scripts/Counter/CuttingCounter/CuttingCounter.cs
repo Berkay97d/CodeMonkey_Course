@@ -6,6 +6,9 @@ using UnityEngine;
 public class CuttingCounter : Counter
 {
     public event EventHandler OnPlayerCutObject;
+
+    [SerializeField] private KitchenObjectRecipeSO[] kitchenObjectRecipes;
+    
     
     public override void Interact(Player player)
     {
@@ -37,9 +40,28 @@ public class CuttingCounter : Counter
     {
         if (HasKitchenObject() && !player.HasKitchenObject())
         {
+            var product = GetOutput(KitchenObject.GetKitchenObjectSO());
+
+            if (product == null) return;
+            
+            KitchenObject.DestroySelf(); 
+            KitchenObject.SpawnKitchenObject(product, this);
             OnPlayerCutObject?.Invoke(this, EventArgs.Empty);
-            Debug.Log("KES");
+
         }
+    }
+
+    private KitchenObjectSO GetOutput(KitchenObjectSO kitchenObjectSO)
+    {
+        foreach (var kitchenObjectRecipe in kitchenObjectRecipes)
+        {
+            if (kitchenObjectRecipe.Input == kitchenObjectSO)
+            {
+                return kitchenObjectRecipe.Output;
+            }
+        }
+
+        return null;
     }
     
     

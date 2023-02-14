@@ -200,6 +200,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CuttingCounter
       objectReference: {fileID: 0}
+    - target: {fileID: 4980762916463065372, guid: dec83542f8531c74a806779007e088bb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.306
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dec83542f8531c74a806779007e088bb, type: 3}
 --- !u!1 &2740204054671623413 stripped
@@ -221,6 +226,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   counterTopPoint: {fileID: 7786245371904880346}
+  kitchenObjectRecipes:
+  - {fileID: 11400000, guid: 532672ee87334764192a3f95f565e7ba, type: 2}
+  - {fileID: 11400000, guid: 68e63865e46592645a691e93afd3f95b, type: 2}
+  - {fileID: 11400000, guid: 8487b97463d076646a4b81ebaca4f4b6, type: 2}
 --- !u!4 &2740204054671623415 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1087158081635930929, guid: dec83542f8531c74a806779007e088bb,
