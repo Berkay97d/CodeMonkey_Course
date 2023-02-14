@@ -19,8 +19,8 @@ public class ContainerCounter : Counter
         kitchenObjTransform.GetComponent<KitchenObject>().KitchenObjectParent = player;
         
         OnPlayerGrabbedObject?.Invoke(this, EventArgs.Empty);
-
     }
    
+    
     
 }

@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class Counter : MonoBehaviour, IKitchenObjectParent
 {
-    [SerializeField] private Transform counterTopPoint;
-    
     public KitchenObject KitchenObject
     {
         get => kitchenObject;
         set => SetKitchenObject(value);
     }
+    
+    [SerializeField] private Transform counterTopPoint;
     
     private KitchenObject kitchenObject;
 
@@ -43,4 +43,5 @@ public class Counter : MonoBehaviour, IKitchenObjectParent
     {
         return kitchenObject;
     }
+    
 }

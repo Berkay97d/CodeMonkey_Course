@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class KitchenObject : MonoBehaviour
 {
-    [SerializeField] private KitchenObjectSO kitchenObjectSO;
-    
     public IKitchenObjectParent KitchenObjectParent 
     {
         get => kitchenObjectParent;
         set => SetKitchenObjectParent(value);
     }
     
+    [SerializeField] private KitchenObjectSO kitchenObjectSO;
+
     private IKitchenObjectParent kitchenObjectParent;
     
     
@@ -33,13 +33,10 @@ public class KitchenObject : MonoBehaviour
             Debug.Log("this object already has kitchen object");
             return;
         }
-        
-        if (this.kitchenObjectParent != null)
-        {
-            this.kitchenObjectParent.ClearKitchenObject();
-        }
-        
-        this.kitchenObjectParent = kObjectParent;
+
+        kitchenObjectParent?.ClearKitchenObject();
+
+        kitchenObjectParent = kObjectParent;
 
         kObjectParent.KitchenObject = this;
         

@@ -5,27 +5,24 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IKitchenObjectParent
 {
-    public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     public class OnSelectedCounterChangedEventArgs : EventArgs
     {
         public Counter SelectedCounter;
     }
     
-    
+    public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     public static Player Instance { get; private set; }
+    
     public KitchenObject KitchenObject
     {
         get => kitchenObject;
         set => SetKitchenObject(value);
     }
     
-    
     [SerializeField] private float moveSpeed;
     [SerializeField] private GameInput gameInput;
     [SerializeField] private LayerMask interactionLayerMask;
     [SerializeField] private Transform kitchenObjectCarryTransform;
-    
-    
     
     private bool isWalking;
     private Vector3 lastInteractDirection;
