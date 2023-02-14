@@ -230,7 +230,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   counter: {fileID: 1396957874847557462}
-  selectedCVisualObj: {fileID: 8960838673670296498}
+  selectedCVisualObj:
+  - {fileID: 8960838673670296498}
 --- !u!1 &8960838673670296498 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3757509049138165633, guid: 9a9137fa2b035d34e881701d2c178192,
