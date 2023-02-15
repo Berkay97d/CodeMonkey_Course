@@ -5,8 +5,8 @@ public class ContainerCounter : Counter
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
 
     public event EventHandler OnPlayerGrabbedObject;
-    
-    
+
+
     public override void  Interact(Player player)
     {
         if (player.KitchenObject != null)

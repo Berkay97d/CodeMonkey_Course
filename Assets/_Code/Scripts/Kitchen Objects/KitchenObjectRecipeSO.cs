@@ -9,4 +9,8 @@ public class KitchenObjectRecipeSO : ScriptableObject
 
     [SerializeField] private KitchenObjectSO output;
     public KitchenObjectSO Output => output;
+
+    [SerializeField] private int cuttingCount;
+    public int CuttingCount => cuttingCount;
+
 }
