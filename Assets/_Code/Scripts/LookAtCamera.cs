@@ -12,6 +12,6 @@ public class LookAtCamera : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.LookAt(camera.transform);
+        transform.forward = -camera.transform.forward;
     }
 }
