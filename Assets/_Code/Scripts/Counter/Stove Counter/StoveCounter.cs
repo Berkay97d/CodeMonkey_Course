@@ -1,8 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-public class StoveCounter : Counter
+public class StoveCounter : Counter, IHasProgress
 {
+    public event EventHandler<IHasProgress.OnProgressChangedArguments> OnProgressChance;
     public event EventHandler<OnFryStateChangedEventArg> OnFryStateChanged;
     public class OnFryStateChangedEventArg : EventArgs
     {
@@ -10,6 +11,8 @@ public class StoveCounter : Counter
     }
     
     [SerializeField] private FryingRecipeSO[] fryingRecipeSos;
+    [SerializeField] private ProgressBarUI progressBar;
+    
 
     private float fryingTime;
 
@@ -23,11 +26,15 @@ public class StoveCounter : Counter
         if (HasKitchenObject())
         {
             fryingTime += Time.deltaTime;
+
             var fryingRecipe = GetFryingRecipeSO(KitchenObject.GetKitchenObjectSO());
+            
 
             if (GetOutputForInput(KitchenObject.GetKitchenObjectSO()) == null)
             {
                 Debug.Log("No Output of burned meets");
+                
+                progressBar.Hide();
                 
                 OnFryStateChanged?.Invoke(this, new OnFryStateChangedEventArg()
                 {
@@ -36,6 +43,13 @@ public class StoveCounter : Counter
                 
                 return;
             }
+            
+            OnProgressChance?.Invoke(this, new IHasProgress.OnProgressChangedArguments
+            {
+                progressNormalized = fryingTime / fryingRecipe.FryingTimerMax 
+            });
+            
+            progressBar.Show();
             
             OnFryStateChanged?.Invoke(this, new OnFryStateChangedEventArg()
             {
@@ -56,6 +70,8 @@ public class StoveCounter : Counter
             {
                 isFrying = false
             });
+            
+            progressBar.Hide();
         }
     }
 

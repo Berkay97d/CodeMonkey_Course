@@ -3,13 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CuttingCounter : Counter
+public class CuttingCounter : Counter, IHasProgress
 {
-    public class OnProgressChangedArguments : EventArgs
-    {
-        public float progressNormalized;
-    }
-    public event EventHandler<OnProgressChangedArguments> OnProgressChance;
+    
+    public event EventHandler<IHasProgress.OnProgressChangedArguments> OnProgressChance;
     public event EventHandler OnPlayerCutObject;
 
     [SerializeField] private KitchenObjectRecipeSO[] kitchenObjectRecipes;
@@ -110,7 +107,7 @@ public class CuttingCounter : Counter
 
     private void RaiseProgressChangedEvent(float progress)
     {
-        OnProgressChance?.Invoke(this, new OnProgressChangedArguments
+        OnProgressChance?.Invoke(this, new IHasProgress.OnProgressChangedArguments
         {
             progressNormalized = progress
         });
