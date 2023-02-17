@@ -77,7 +77,7 @@ public class StoveCounter : Counter, IHasProgress
 
     public override void Interact(Player player)
     {
-        if (KitchenObject == null)
+        if (!HasKitchenObject())
         {
             if (player.KitchenObject != null)
             {
@@ -95,7 +95,21 @@ public class StoveCounter : Counter, IHasProgress
             return;
         }
 
-        if (player.KitchenObject == null)
+        if (HasKitchenObject())
+        {
+            if (player.HasKitchenObject())
+            {
+                if (player.KitchenObject.TryGetPlate(out PlateKitchenObject plate))
+                {
+                    if (plate.TryAddIngredient(KitchenObject.GetKitchenObjectSO()))
+                    {
+                        KitchenObject.DestroySelf();
+                    }
+                }
+            }
+        }
+        
+        if (!player.HasKitchenObject())
         {
             KitchenObject.KitchenObjectParent = player;
             

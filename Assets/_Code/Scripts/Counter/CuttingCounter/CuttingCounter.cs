@@ -54,12 +54,14 @@ public class CuttingCounter : Counter, IHasProgress
                         KitchenObject.DestroySelf();
                         
                         progressBar.Hide();
+                        
+                        return;
                     }
                 }
             }
         }
 
-        if (player.KitchenObject == null)
+        if (!player.HasKitchenObject())
         {
             KitchenObject.KitchenObjectParent = player;
             
