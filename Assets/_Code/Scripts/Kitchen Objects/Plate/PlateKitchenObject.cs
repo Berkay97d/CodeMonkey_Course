@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlateKitchenObject : KitchenObject
+public class PlateKitchenObject : KitchenObject, IEnumerable<KitchenObjectSO>
 {
     public class OnIngredientAddedEventArgs : EventArgs
     {
@@ -11,12 +12,10 @@ public class PlateKitchenObject : KitchenObject
     public event EventHandler<OnIngredientAddedEventArgs> OnIngredientAdded;
 
     [SerializeField] private List<KitchenObjectSO> validKitchenObjects;
-    
-    private List<KitchenObjectSO> kitchenObjectSoList = new List<KitchenObjectSO>();
 
-    
-    
-    
+    private readonly List<KitchenObjectSO> kitchenObjectSoList = new List<KitchenObjectSO>();
+
+
     public bool TryAddIngredient(KitchenObjectSO kitchenObjectSO)
     {
         if (kitchenObjectSoList.Contains(kitchenObjectSO)) return false;
@@ -31,7 +30,15 @@ public class PlateKitchenObject : KitchenObject
         });
         return true;
     }
-    
-    
-    
+
+
+    public IEnumerator<KitchenObjectSO> GetEnumerator()
+    {
+        return kitchenObjectSoList.GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
 }
