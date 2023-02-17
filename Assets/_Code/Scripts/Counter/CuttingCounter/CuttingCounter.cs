@@ -17,7 +17,7 @@ public class CuttingCounter : Counter, IHasProgress
     
     public override void Interact(Player player)
     {
-        if (KitchenObject == null)
+        if (!HasKitchenObject())
         {
             if (player.KitchenObject != null)
             {
@@ -25,14 +25,13 @@ public class CuttingCounter : Counter, IHasProgress
                 
                 player.KitchenObject.KitchenObjectParent = this;
                 
-                progressBar.Show();
-                
-                
                 if (!IsKitchenObjectCuttable())
                 {
                     RaiseProgressChangedEvent(0f);
                     return;
                 }
+                
+                progressBar.Show();
                 
                 RaiseProgressChangedEvent((float) currentCuttingCount / GetRecipeSO(KitchenObject.GetKitchenObjectSO()).CuttingCount);
                 
@@ -42,6 +41,22 @@ public class CuttingCounter : Counter, IHasProgress
 
             Debug.Log("NOTHING TO PUT OR TAKE");
             return;
+        }
+
+        if (HasKitchenObject())
+        {
+            if (player.HasKitchenObject())
+            {
+                if (player.KitchenObject.TryGetPlate(out PlateKitchenObject plate))
+                {
+                    if (plate.TryAddIngredient(KitchenObject.GetKitchenObjectSO()))
+                    {
+                        KitchenObject.DestroySelf();
+                        
+                        progressBar.Hide();
+                    }
+                }
+            }
         }
 
         if (player.KitchenObject == null)

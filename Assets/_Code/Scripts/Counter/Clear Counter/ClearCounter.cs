@@ -10,10 +10,11 @@ public class ClearCounter : Counter
     
     public override void Interact(Player player)
     {
-        if (KitchenObject == null)
+        if (!HasKitchenObject())
         {
-            if (player.KitchenObject != null)
+            if (player.HasKitchenObject())
             {
+                
                 player.KitchenObject.KitchenObjectParent = this;
                 Debug.Log("PUTTED");
                 return;
@@ -22,8 +23,21 @@ public class ClearCounter : Counter
             Debug.Log("NOTHING TO PUT OR TAKE");
             return;
         }
+        
+        if (player.HasKitchenObject())
+        {
+            if (player.KitchenObject.TryGetPlate(out PlateKitchenObject plateKitchenObject))
+            {
+                if (plateKitchenObject.TryAddIngredient(KitchenObject.GetKitchenObjectSO()))
+                {
+                    KitchenObject.DestroySelf();
+                }
+                return;
+            }
+        }
+        
 
-        if (player.KitchenObject == null)
+        if (!player.HasKitchenObject())
         {
             KitchenObject.KitchenObjectParent = player;
             Debug.Log("GRABBED");
