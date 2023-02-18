@@ -473,7 +473,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 679d19b8817e42d4895bed123bc6f492, type: 2}
   - {fileID: 11400000, guid: 4645a8520f1774b4eb8128096907de0d, type: 2}
   - {fileID: 11400000, guid: eb0448e6dd89a6c4c977beb8aa7f929c, type: 2}
-  maxOrderCount: 3
+  maxOrderCount: 1
 --- !u!4 &170386365
 Transform:
   m_ObjectHideFlags: 0

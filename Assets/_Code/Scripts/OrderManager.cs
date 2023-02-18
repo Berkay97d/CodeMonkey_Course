@@ -10,7 +10,7 @@ public class OrderManager : MonoBehaviour
     [SerializeField] private OrderItemSO[] possibleOrders ;
     [SerializeField] private int maxOrderCount;
 
-    public OrderItemSO CurrentOrder => orders[0];
+    private OrderItemSO CurrentOrder => orders[0];
 
     private List<OrderItemSO> orders = new List<OrderItemSO>();
 
