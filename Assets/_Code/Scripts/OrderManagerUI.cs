@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class OrderManagerUI : MonoBehaviour
@@ -15,20 +16,18 @@ public class OrderManagerUI : MonoBehaviour
         template.gameObject.SetActive(false);
     }
 
-    private void UpdateVisual()
+    public void UpdateVisual()
     {
-        foreach (Transform chield in container)
+        foreach (Transform child in container)
         {
-            if (chield == template) continue;
-            
-            Destroy(chield.gameObject);
-
-            foreach (var order in orderManager)
-            {
-                var orderTransform = Instantiate(template, container);
-                orderTransform.gameObject.SetActive(true);
-            }
-            
+            Destroy(child.gameObject);
+        }
+        
+        foreach (var order in orderManager.orders)
+        {
+            var orderTransform = Instantiate(template, container);
+            orderTransform.GetComponentInChildren<TMP_Text>().text = order.OrderName;
+            orderTransform.gameObject.SetActive(true);
         }
     }
 }

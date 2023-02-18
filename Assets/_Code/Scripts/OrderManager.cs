@@ -5,14 +5,16 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 
-public class OrderManager : MonoBehaviour, IEnumerable<OrderItemSO>
+public class OrderManager : MonoBehaviour
 {
     [SerializeField] private OrderItemSO[] possibleOrders ;
     [SerializeField] private int maxOrderCount;
+    [SerializeField] private OrderManagerUI orderManagerUI;
+    
 
     private OrderItemSO CurrentOrder => orders[0];
 
-    private List<OrderItemSO> orders = new List<OrderItemSO>();
+    public List<OrderItemSO> orders = new List<OrderItemSO>();
 
 
     private void Start()
@@ -21,6 +23,7 @@ public class OrderManager : MonoBehaviour, IEnumerable<OrderItemSO>
         {
             OrderFood();
         }
+        
     }
 
     private void OrderFood()
@@ -32,6 +35,7 @@ public class OrderManager : MonoBehaviour, IEnumerable<OrderItemSO>
         
         var orderr = GetRandomOrder();
         orders.Add(orderr);
+        orderManagerUI.UpdateVisual();
         Debug.Log("I ORDERED A " + orderr.OrderName + " " + Time.time);
     }
 
@@ -66,16 +70,5 @@ public class OrderManager : MonoBehaviour, IEnumerable<OrderItemSO>
             return true;
         }
         return false;
-    }
-
-
-    public IEnumerator<OrderItemSO> GetEnumerator()
-    {
-        return orders.GetEnumerator();
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
     }
 }
