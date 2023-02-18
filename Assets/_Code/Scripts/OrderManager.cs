@@ -5,7 +5,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 
-public class OrderManager : MonoBehaviour
+public class OrderManager : MonoBehaviour, IEnumerable<OrderItemSO>
 {
     [SerializeField] private OrderItemSO[] possibleOrders ;
     [SerializeField] private int maxOrderCount;
@@ -66,5 +66,16 @@ public class OrderManager : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+
+    public IEnumerator<OrderItemSO> GetEnumerator()
+    {
+        return orders.GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
     }
 }
