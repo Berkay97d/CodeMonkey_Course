@@ -47,6 +47,11 @@ public class OrderManager : MonoBehaviour
 
     public bool TryDeliverOrder(PlateKitchenObject plateKitchenObject)
     {
+        if (plateKitchenObject.NumOfKitchenObjectOnPlate() != CurrentOrder.Ingrediants.Length)
+        {
+            return false;
+        }
+        
         int numOfIngredientInOrder = CurrentOrder.Ingrediants.Length;
         int matchNumber = 0;
         
@@ -61,8 +66,7 @@ public class OrderManager : MonoBehaviour
                 }        
             }
         }
-
-
+        
         if (matchNumber == numOfIngredientInOrder)
         {
             orders.Remove(CurrentOrder);

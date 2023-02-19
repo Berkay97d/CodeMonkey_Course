@@ -37,6 +37,11 @@ public class PlateKitchenObject : KitchenObject, IEnumerable<KitchenObjectSO>
         return kitchenObjectSoList.GetEnumerator();
     }
 
+    public int NumOfKitchenObjectOnPlate()
+    {
+        return kitchenObjectSoList.Count;
+    }
+
     IEnumerator IEnumerable.GetEnumerator()
     {
         return GetEnumerator();
