@@ -21,19 +21,14 @@ public class OrderManager : MonoBehaviour
     {
         while (orders.Count != maxOrderCount)
         {
-            OrderFood();
+            OrderFood(maxOrderCount);
         }
         
     }
 
-    private void OrderFood()
+    private void OrderFood(int orderNumber)
     {
-        if (orders.Count >= maxOrderCount)
-        {
-            return;
-        }
-        
-        var orderr = GetRandomOrder();
+       var orderr = GetRandomOrder();
         orders.Add(orderr);
         StartCoroutine(orderManagerUI.UpdateVisual());
     }
@@ -69,7 +64,7 @@ public class OrderManager : MonoBehaviour
         if (matchNumber == numOfIngredientInOrder)
         {
             orders.Remove(CurrentOrder);
-            OrderFood();
+            OrderFood(1);
             return true;
         }
         return false;

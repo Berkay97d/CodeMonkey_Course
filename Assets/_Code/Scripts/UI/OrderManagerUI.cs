@@ -11,6 +11,7 @@ public class OrderManagerUI : MonoBehaviour
     [SerializeField] private Transform template;
     [SerializeField] private OrderManager orderManager;
     [SerializeField] private Image imagePrefab;
+    [SerializeField] private OrderItemSO[] possibleOrders;
     
     
     private void Awake()
@@ -35,10 +36,11 @@ public class OrderManagerUI : MonoBehaviour
 
             foreach (var ingredient in order.Ingrediants)
             {
-                Instantiate(imagePrefab, orderTransform.Find("Background"));
-                imagePrefab.sprite = ingredient.Sprite;
+                var a = Instantiate(imagePrefab, orderTransform.Find("Background"));
+                a.name = ingredient.ObjectName;
+                a.sprite = ingredient.Sprite;
             }
-            
         }
     }
+    
 }
