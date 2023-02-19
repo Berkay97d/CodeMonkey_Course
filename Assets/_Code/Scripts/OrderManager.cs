@@ -36,7 +36,6 @@ public class OrderManager : MonoBehaviour
         var orderr = GetRandomOrder();
         orders.Add(orderr);
         orderManagerUI.UpdateVisual();
-        Debug.Log("I ORDERED A " + orderr.OrderName + " " + Time.time);
     }
 
     private OrderItemSO GetRandomOrder()
@@ -52,8 +51,8 @@ public class OrderManager : MonoBehaviour
             return false;
         }
         
-        int numOfIngredientInOrder = CurrentOrder.Ingrediants.Length;
-        int matchNumber = 0;
+        var numOfIngredientInOrder = CurrentOrder.Ingrediants.Length;
+        var matchNumber = 0;
         
         foreach (var ingredientInPlate in plateKitchenObject)
         {
