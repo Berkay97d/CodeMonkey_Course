@@ -477,7 +477,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4645a8520f1774b4eb8128096907de0d, type: 2}
   - {fileID: 11400000, guid: 74265eddaf2ae584dbcd349adbb00ff7, type: 2}
   - {fileID: 11400000, guid: 9ef9d17fb622c674883b50076adc2caa, type: 2}
-  maxOrderCount: 3
+  maxOrderCount: 10
   orderManagerUI: {fileID: 442218978}
   orders: []
 --- !u!4 &170386365
@@ -1190,6 +1190,8 @@ MonoBehaviour:
   template: {fileID: 8633537210526560300, guid: 8cbdec56d2dbafc4a9d987226be67fb0,
     type: 3}
   orderManager: {fileID: 170386364}
+  imagePrefab: {fileID: 6321443043038102696, guid: 3dbf0d368a6a56f49a7ece52fcf6b2bd,
+    type: 3}
 --- !u!1 &457943021
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,7 +35,7 @@ public class OrderManager : MonoBehaviour
         
         var orderr = GetRandomOrder();
         orders.Add(orderr);
-        orderManagerUI.UpdateVisual();
+        StartCoroutine(orderManagerUI.UpdateVisual());
     }
 
     private OrderItemSO GetRandomOrder()
