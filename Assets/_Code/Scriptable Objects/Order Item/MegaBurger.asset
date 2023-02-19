@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: MegaBurger
   m_EditorClassIdentifier: 
   ingrediants:
-  - {fileID: 11400000, guid: 792e06e7947d71746868551d78c55ad0, type: 2}
+  - {fileID: 11400000, guid: 97ef099ec54c8544a84203ccc7b5c685, type: 2}
   - {fileID: 11400000, guid: 1bf5c1a8103ab3b469c56a5585a6eca0, type: 2}
-  orderName: Salad
+  - {fileID: 11400000, guid: bb0146c0d23fbc749b57d513a0212a34, type: 2}
+  - {fileID: 11400000, guid: 792e06e7947d71746868551d78c55ad0, type: 2}
+  - {fileID: 11400000, guid: b7432378d9bf88a4696ef031d67c934f, type: 2}
+  orderName: Mega Burger
