@@ -14,22 +14,21 @@ public class OrderManager : MonoBehaviour
 
     private OrderItemSO CurrentOrder => orders[0];
 
-    public List<OrderItemSO> orders = new List<OrderItemSO>();
+    [HideInInspector] public List<OrderItemSO> orders = new List<OrderItemSO>();
 
 
     private void Start()
     {
-        while (orders.Count != maxOrderCount)
-        {
-            OrderFood(maxOrderCount);
-        }
-        
+        OrderFood(maxOrderCount);
     }
 
     private void OrderFood(int orderNumber)
     {
-       var orderr = GetRandomOrder();
-        orders.Add(orderr);
+        for (int i = 0; i < orderNumber; i++)
+        {
+            var orderr = GetRandomOrder();
+            orders.Add(orderr);
+        }
         StartCoroutine(orderManagerUI.UpdateVisual());
     }
 
