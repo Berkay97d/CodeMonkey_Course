@@ -476,6 +476,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 143437b1873d1a740bd6c1dff0c37d2c, type: 2}
   - {fileID: 11400000, guid: 4645a8520f1774b4eb8128096907de0d, type: 2}
   - {fileID: 11400000, guid: 74265eddaf2ae584dbcd349adbb00ff7, type: 2}
+  - {fileID: 11400000, guid: 9ef9d17fb622c674883b50076adc2caa, type: 2}
   maxOrderCount: 3
   orderManagerUI: {fileID: 442218978}
   orders: []
