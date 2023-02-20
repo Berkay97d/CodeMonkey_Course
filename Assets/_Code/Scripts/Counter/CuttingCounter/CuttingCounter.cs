@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CuttingCounter : Counter, IHasProgress
 {
-    
+    public static event EventHandler OnAnyCut ;
     public event EventHandler<IHasProgress.OnProgressChangedArguments> OnProgressChance;
     public event EventHandler OnPlayerCutObject;
 
@@ -108,6 +108,7 @@ public class CuttingCounter : Counter, IHasProgress
             }
 
             OnPlayerCutObject?.Invoke(this, EventArgs.Empty);
+            OnAnyCut?.Invoke(this, EventArgs.Empty);
         }
         
     }

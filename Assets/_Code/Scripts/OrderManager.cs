@@ -7,6 +7,10 @@ using Random = UnityEngine.Random;
 
 public class OrderManager : MonoBehaviour
 {
+    public static event EventHandler OnOrderSuccess;
+    public static event EventHandler OnOrderFail;
+    
+    
     [SerializeField] private OrderItemSO[] possibleOrders ;
     [SerializeField] private int maxOrderCount;
     [SerializeField] private OrderManagerUI orderManagerUI;
@@ -42,6 +46,7 @@ public class OrderManager : MonoBehaviour
     {
         if (plateKitchenObject.NumOfKitchenObjectOnPlate() != CurrentOrder.Ingrediants.Length)
         {
+            OnOrderFail?.Invoke(this, EventArgs.Empty);
             return false;
         }
         
@@ -64,8 +69,12 @@ public class OrderManager : MonoBehaviour
         {
             orders.Remove(CurrentOrder);
             OrderFood(1);
+            OnOrderSuccess?.Invoke(this, EventArgs.Empty);
             return true;
         }
+        
+        OnOrderFail?.Invoke(this, EventArgs.Empty);
         return false;
+        
     }
 }
