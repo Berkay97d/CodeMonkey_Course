@@ -2,10 +2,23 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GamePauseUI : MonoBehaviour
 {
+    [SerializeField] private Button mainMenuButton;
+    
     private bool isPaused = false;
+
+
+    private void Awake()
+    {
+        mainMenuButton.onClick.AddListener(() =>
+        {
+            SceneManager.LoadScene(0);
+        });
+    }
 
     private void Start()
     {
