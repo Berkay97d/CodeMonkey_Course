@@ -6,9 +6,17 @@ using Random = UnityEngine.Random;
 
 public class SoundManager : MonoBehaviour
 {
+
+    public static SoundManager Instance;
+    
     [SerializeField] private AudioClipRefsSO audioClipRefs;
-    
-    
+
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void Start()
     {
         OrderManager.OnOrderSuccess += OrderManagerOnOrderSuccess;
@@ -62,6 +70,11 @@ public class SoundManager : MonoBehaviour
     private void PlaySound(AudioClip audioClip, Vector3 position, float volume = 1f)
     {
         AudioSource.PlayClipAtPoint(audioClip, position, volume);
+    }
+
+    public void PlayPlayerStep()
+    {
+        PlaySound(audioClipRefs.footstep, Player.Instance.transform.position);
     }
     
     
