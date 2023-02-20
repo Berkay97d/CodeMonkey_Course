@@ -14,6 +14,7 @@ public enum GameState
 public class GameController : MonoBehaviour
 {
     public static GameController Instance;
+    public event EventHandler OnStateChanged;
 
     [SerializeField] private float waitToStartTime;
     [SerializeField] private float countdownToStartTime;
@@ -39,6 +40,7 @@ public class GameController : MonoBehaviour
                 if (waitToStartTime <= 0f)
                 {
                     state = GameState.CountdownToStart;
+                    OnStateChanged?.Invoke(this, EventArgs.Empty);
                 }
                 break;
             case GameState.CountdownToStart:
@@ -46,6 +48,7 @@ public class GameController : MonoBehaviour
                 if (countdownToStartTime <= 0f)
                 {
                     state = GameState.Playing;
+                    OnStateChanged?.Invoke(this, EventArgs.Empty);
                 }
                 break;
             case GameState.Playing:
@@ -53,6 +56,7 @@ public class GameController : MonoBehaviour
                 if (gameplayTime <= 0f)
                 {
                     state = GameState.Over;
+                    OnStateChanged?.Invoke(this, EventArgs.Empty);
                 }
                 break;
             case GameState.Over:
@@ -65,5 +69,15 @@ public class GameController : MonoBehaviour
     public bool IsGamePlaying()
     {
         return state == GameState.Playing;
+    }
+
+    public bool IsCountdownActive()
+    {
+        return state == GameState.CountdownToStart;
+    }
+
+    public float GetCountdownTimer()
+    {
+        return countdownToStartTime;
     }
 }
