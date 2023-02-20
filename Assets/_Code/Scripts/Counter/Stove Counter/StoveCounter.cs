@@ -14,9 +14,9 @@ public class StoveCounter : Counter, IHasProgress
     [SerializeField] private FryingRecipeSO[] fryingRecipeSos;
     [SerializeField] private ProgressBarUI progressBar;
     
-
     private float fryingTime;
 
+    
     private void Update()
     {
         Debug.Log(isFrying);
@@ -73,7 +73,8 @@ public class StoveCounter : Counter, IHasProgress
             {
                 isFrying = false
             });
-            
+
+            isFrying = false;
             progressBar.Hide();
         }
     }
