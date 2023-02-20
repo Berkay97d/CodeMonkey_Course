@@ -433,6 +433,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7806382445689753501, guid: ed97fb4a486ad3d43bae527d45ba680b,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 8258215731157780748, guid: ed97fb4a486ad3d43bae527d45ba680b,
         type: 3}
       propertyPath: m_IsActive

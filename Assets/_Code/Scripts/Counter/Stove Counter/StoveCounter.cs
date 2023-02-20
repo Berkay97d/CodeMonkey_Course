@@ -9,6 +9,7 @@ public class StoveCounter : Counter, IHasProgress
     {
         public bool isFrying;
     }
+    public bool isFrying { get; private set; }
     
     [SerializeField] private FryingRecipeSO[] fryingRecipeSos;
     [SerializeField] private ProgressBarUI progressBar;
@@ -18,6 +19,7 @@ public class StoveCounter : Counter, IHasProgress
 
     private void Update()
     {
+        Debug.Log(isFrying);
         HandleCooking();
     }
 
@@ -33,7 +35,7 @@ public class StoveCounter : Counter, IHasProgress
             if (GetOutputForInput(KitchenObject.GetKitchenObjectSO()) == null)
             {
                 Debug.Log("No Output of burned meets");
-                
+                isFrying = false;
                 progressBar.Hide();
                 
                 OnFryStateChanged?.Invoke(this, new OnFryStateChangedEventArg()
@@ -48,7 +50,8 @@ public class StoveCounter : Counter, IHasProgress
             {
                 progressNormalized = fryingTime / fryingRecipe.FryingTimerMax 
             });
-            
+
+            isFrying = true;
             progressBar.Show();
             
             OnFryStateChanged?.Invoke(this, new OnFryStateChangedEventArg()
@@ -167,6 +170,7 @@ public class StoveCounter : Counter, IHasProgress
 
         return null;
     }
+    
     
 }
 
