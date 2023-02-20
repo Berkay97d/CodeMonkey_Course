@@ -17,7 +17,7 @@ public class CountdownUI : MonoBehaviour
 
     private void Update()
     {
-        countdown.text = GameController.Instance.GetCountdownTimer().ToString();
+        countdown.text = GameController.Instance.GetCountdownTimer().ToString("F0");
     }
 
     private void InstanceOnOnStateChanged(object sender, EventArgs e)
