@@ -18,9 +18,9 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private float waitToStartTime;
     [SerializeField] private float countdownToStartTime;
-    [SerializeField] private float gameplayTime;
+    [SerializeField] private float gameplayTimeMax;
     
-    
+    private float gameplayTime;
     private GameState state;
     
 
@@ -48,6 +48,7 @@ public class GameController : MonoBehaviour
                 if (countdownToStartTime <= 0f)
                 {
                     state = GameState.Playing;
+                    gameplayTime = gameplayTimeMax;
                     OnStateChanged?.Invoke(this, EventArgs.Empty);
                 }
                 break;
@@ -84,5 +85,10 @@ public class GameController : MonoBehaviour
     public bool IsGameOver()
     {
         return state == GameState.Over;
+    }
+
+    public float GetGameClockNormalized()
+    {
+        return 1 - (gameplayTime / gameplayTimeMax);
     }
 }
