@@ -84,6 +84,7 @@ public class StoveCounter : Counter, IHasProgress
                 if (HasRecipeWithOutput(player.KitchenObject.GetKitchenObjectSO()))
                 {
                     player.KitchenObject.KitchenObjectParent = this;
+                    player.ClearKitchenObject();
                     Debug.Log("PUTTED");
                     return;
                 }

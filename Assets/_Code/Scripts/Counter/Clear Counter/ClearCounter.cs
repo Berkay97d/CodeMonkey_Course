@@ -16,6 +16,7 @@ public class ClearCounter : Counter
             {
                 
                 player.KitchenObject.KitchenObjectParent = this;
+                player.ClearKitchenObject();
                 Debug.Log("PUTTED");
                 return;
             }

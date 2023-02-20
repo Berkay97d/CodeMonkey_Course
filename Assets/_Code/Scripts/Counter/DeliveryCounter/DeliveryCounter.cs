@@ -23,10 +23,12 @@ public class DeliveryCounter : Counter
                 {
                     Debug.Log("ORDER SUCSESSFUL");
                     plate.DestroySelf();
+                    player.ClearKitchenObject();
                     return;
                 }
                 
                 plate.DestroySelf();
+                player.ClearKitchenObject();
                 Debug.Log("ORDER FAİLED");
                 
             }

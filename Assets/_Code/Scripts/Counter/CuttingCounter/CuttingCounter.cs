@@ -24,6 +24,7 @@ public class CuttingCounter : Counter, IHasProgress
                 currentCuttingCount = 0;
                 
                 player.KitchenObject.KitchenObjectParent = this;
+                player.ClearKitchenObject();
                 
                 if (!IsKitchenObjectCuttable())
                 {

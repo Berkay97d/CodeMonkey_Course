@@ -25,6 +25,7 @@ public class ContainerCounter : Counter
         if (player.KitchenObject.GetKitchenObjectSO() == container)
         {
             player.KitchenObject.DestroySelf();
+            player.ClearKitchenObject();
             OnPlayerGrabbedObject?.Invoke(this, EventArgs.Empty);
         }
     }

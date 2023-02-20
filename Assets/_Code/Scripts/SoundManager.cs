@@ -15,6 +15,19 @@ public class SoundManager : MonoBehaviour
         OrderManager.OnOrderFail += OrderManagerOnOrderFail;
         
         CuttingCounter.OnAnyCut += CuttingCounterOnAnyCut;
+        
+        Player.Instance.OnPlayerPickSomething += PlayerOnPlayerPickSomething;
+        Player.Instance.OnPlayerDropSomething += PlayerOnPlayerDropSomething;
+    }
+
+    private void PlayerOnPlayerDropSomething(object sender, EventArgs e)
+    {
+        PlaySound( audioClipRefs.objectDrop, Player.Instance.transform.position);
+    }
+
+    private void PlayerOnPlayerPickSomething(object sender, EventArgs e)
+    {
+        PlaySound( audioClipRefs.objectPickup, Player.Instance.transform.position);
     }
 
     private void CuttingCounterOnAnyCut(object sender, EventArgs e)

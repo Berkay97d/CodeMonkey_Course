@@ -10,7 +10,6 @@ public class TrashCounter : Counter
         if (player.HasKitchenObject())
         {
             player.KitchenObject.DestroySelf();
-            player.ClearKitchenObject();
             OnPlayerInteractWithTrash?.Invoke(this, EventArgs.Empty);
         }
     }

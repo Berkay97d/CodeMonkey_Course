@@ -11,12 +11,22 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     }
     
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
+    public event EventHandler OnPlayerPickSomething;
+    public event EventHandler OnPlayerDropSomething;
     public static Player Instance { get; private set; }
     
     public KitchenObject KitchenObject
     {
         get => kitchenObject;
-        set => SetKitchenObject(value);
+        set
+        {
+            var old = KitchenObject;
+            SetKitchenObject(value);
+            if (KitchenObject != old)
+            {
+                OnPlayerPickSomething?.Invoke(this, EventArgs.Empty);
+            }
+        } 
     }
     
     [SerializeField] private float moveSpeed;
@@ -165,6 +175,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     public void ClearKitchenObject()
     {
+        OnPlayerDropSomething?.Invoke(this, EventArgs.Empty);
         kitchenObject = null;
     }
 
