@@ -60,6 +60,11 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     private void GameInputOnOnInteractAction(object sender, EventArgs e)
     {
+        if (!GameController.Instance.IsGamePlaying())
+        {
+            return;
+        }
+        
         if (selectedCounter != null)
         {
             selectedCounter.Interact(this);
@@ -68,6 +73,11 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     
     private void GameInputOnOnInteractSecondaryAction(object sender, EventArgs e)
     {
+        if (!GameController.Instance.IsGamePlaying())
+        {
+            return;
+        }
+        
         if (selectedCounter != null)
         {
             selectedCounter.InteractSecondary(this);

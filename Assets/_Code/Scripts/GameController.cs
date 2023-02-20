@@ -61,4 +61,9 @@ public class GameController : MonoBehaviour
 
         Debug.Log(state);
     }
+
+    public bool IsGamePlaying()
+    {
+        return state == GameState.Playing;
+    }
 }
