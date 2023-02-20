@@ -18,6 +18,14 @@ public class SoundManager : MonoBehaviour
         
         Player.Instance.OnPlayerPickSomething += PlayerOnPlayerPickSomething;
         Player.Instance.OnPlayerDropSomething += PlayerOnPlayerDropSomething;
+        
+        TrashCounter.OnObjectTrash += TrashCounterOnObjectTrash;
+    }
+
+    private void TrashCounterOnObjectTrash(object sender, EventArgs e)
+    {
+        var trash = sender as TrashCounter;
+        PlaySound(audioClipRefs.trash, trash.transform.position);
     }
 
     private void PlayerOnPlayerDropSomething(object sender, EventArgs e)
