@@ -80,4 +80,9 @@ public class GameController : MonoBehaviour
     {
         return countdownToStartTime;
     }
+
+    public bool IsGameOver()
+    {
+        return state == GameState.Over;
+    }
 }

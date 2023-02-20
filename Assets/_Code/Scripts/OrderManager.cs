@@ -9,6 +9,8 @@ public class OrderManager : MonoBehaviour
 {
     public static event EventHandler OnOrderSuccess;
     public static event EventHandler OnOrderFail;
+    public static OrderManager Instance { get; private set; }
+    public int SuccessOrderAmount { get; private set; }
     
     
     [SerializeField] private OrderItemSO[] possibleOrders ;
@@ -20,6 +22,11 @@ public class OrderManager : MonoBehaviour
 
     [HideInInspector] public List<OrderItemSO> orders = new List<OrderItemSO>();
 
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -70,6 +77,7 @@ public class OrderManager : MonoBehaviour
             orders.Remove(CurrentOrder);
             OrderFood(1);
             OnOrderSuccess?.Invoke(this, EventArgs.Empty);
+            SuccessOrderAmount++;
             return true;
         }
         
