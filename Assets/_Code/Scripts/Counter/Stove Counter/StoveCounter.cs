@@ -15,11 +15,10 @@ public class StoveCounter : Counter, IHasProgress
     [SerializeField] private ProgressBarUI progressBar;
     
     private float fryingTime;
-
+    
     
     private void Update()
     {
-        Debug.Log(isFrying);
         HandleCooking();
     }
 
