@@ -16,6 +16,7 @@ public class GamePauseUI : MonoBehaviour
     {
         mainMenuButton.onClick.AddListener(() =>
         {
+            Time.timeScale = 1;
             SceneManager.LoadScene(0);
         });
     }
