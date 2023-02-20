@@ -11,6 +11,12 @@ public enum GameState
     Over,
 }
 
+public enum GameRunnigState
+{
+    Paused,
+    Runnig,
+}
+
 public class GameController : MonoBehaviour
 {
     public static GameController Instance;
@@ -22,12 +28,31 @@ public class GameController : MonoBehaviour
     
     private float gameplayTime;
     private GameState state;
+    private GameRunnigState gameRunnigState;
     
 
     private void Awake()
     {
         Instance = this;
         state = GameState.WaitToStart;
+        gameRunnigState = GameRunnigState.Runnig;
+    }
+
+    private void Start()
+    {
+        GameInput.Instance.OnPause += GameInputOnPause;
+    }
+
+    private void GameInputOnPause(object sender, EventArgs e)
+    {
+        if (gameRunnigState == GameRunnigState.Runnig)
+        {
+            PauseGame();
+        }
+        else
+        {
+            CountinueGame();
+        }
     }
 
 
@@ -65,6 +90,18 @@ public class GameController : MonoBehaviour
         }
 
         Debug.Log(state);
+    }
+
+    private void PauseGame()
+    {
+        Time.timeScale = 0;
+        gameRunnigState = GameRunnigState.Paused;
+    }
+
+    private void CountinueGame()
+    {
+        Time.timeScale = 1;
+        gameRunnigState = GameRunnigState.Runnig;
     }
 
     public bool IsGamePlaying()
