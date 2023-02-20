@@ -483,7 +483,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4645a8520f1774b4eb8128096907de0d, type: 2}
   - {fileID: 11400000, guid: 74265eddaf2ae584dbcd349adbb00ff7, type: 2}
   - {fileID: 11400000, guid: 9ef9d17fb622c674883b50076adc2caa, type: 2}
-  maxOrderCount: 8
+  maxOrderCount: 3
   orderManagerUI: {fileID: 442218978}
   orders: []
 --- !u!4 &170386365
@@ -3609,7 +3609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5620e09e1413a48458b5de9f36a9d36d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitToStartTime: 1
+  waitToStartTime: 2
   countdownToStartTime: 3
   gameplayTimeMax: 10
 --- !u!4 &1370365541
