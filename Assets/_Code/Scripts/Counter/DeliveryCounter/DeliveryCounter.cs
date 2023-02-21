@@ -7,6 +7,7 @@ public class DeliveryCounter : Counter
 {
     public static DeliveryCounter Instance;
     public event EventHandler OnDeliverySuccess;
+    public event EventHandler OnDeliveryFail;
     
     [SerializeField] private OrderManager orderManager;
     
@@ -32,6 +33,8 @@ public class DeliveryCounter : Counter
                     player.ClearKitchenObject();
                     return;
                 }
+                
+                OnDeliveryFail?.Invoke(this, EventArgs.Empty);
                 
                 plate.DestroySelf();
                 player.ClearKitchenObject();
