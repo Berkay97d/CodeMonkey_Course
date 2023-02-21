@@ -46,6 +46,11 @@ public class SoundManager : MonoBehaviour
         PlaySound( audioClipRefs.objectPickup, Player.Instance.transform.position);
     }
 
+    public void PlayCountdownSound()
+    {
+        PlaySound(audioClipRefs.warning, Vector3.zero);
+    }
+    
     private void CuttingCounterOnAnyCut(object sender, EventArgs e)
     {
         var counter = sender as CuttingCounter;

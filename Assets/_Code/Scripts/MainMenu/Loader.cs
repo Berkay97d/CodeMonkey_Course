@@ -6,12 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class Loader : MonoBehaviour
 {
-    [SerializeField] private float waitTime;
+    [SerializeField] private float maxWaitTime;
     private float time;
     
     private void Update()
     {
-        if (time < waitTime)
+        if (Input.anyKeyDown)
+        {
+            SceneManager.LoadScene(2);
+        }
+        
+        if (time < maxWaitTime)
         {
             time += Time.deltaTime;
         }
