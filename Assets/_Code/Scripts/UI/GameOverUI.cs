@@ -3,11 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameOverUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text deliveredOrderText;
+    [SerializeField] private Button mainMenuButton;
+    
 
+    private void Awake()
+    {
+        mainMenuButton.onClick.AddListener(() =>
+        {
+            Time.timeScale = 1;
+            SceneManager.LoadScene(0);
+        });
+    }
 
     private void Start()
     {
