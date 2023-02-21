@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class DeliveryCounter : Counter
 {
-    [SerializeField] private OrderManager orderManager;
     public static DeliveryCounter Instance;
-
+    public event EventHandler OnDeliverySuccess;
+    
+    [SerializeField] private OrderManager orderManager;
+    
+    
     private void Awake()
     {
         Instance = this;
@@ -22,6 +25,9 @@ public class DeliveryCounter : Counter
                 if (orderManager.TryDeliverOrder(plate))
                 {
                     Debug.Log("ORDER SUCSESSFUL");
+                    
+                    OnDeliverySuccess?.Invoke(this, EventArgs.Empty);
+                    
                     plate.DestroySelf();
                     player.ClearKitchenObject();
                     return;

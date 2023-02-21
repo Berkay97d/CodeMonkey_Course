@@ -3823,6 +3823,7 @@ MonoBehaviour:
   waitToStartTime: 2
   countdownToStartTime: 3
   gameplayTimeMax: 30
+  gameTimeEarn: 10
 --- !u!4 &1370365541
 Transform:
   m_ObjectHideFlags: 0

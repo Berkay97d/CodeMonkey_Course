@@ -25,6 +25,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private float waitToStartTime;
     [SerializeField] private float countdownToStartTime;
     [SerializeField] private float gameplayTimeMax;
+    [SerializeField] private float gameTimeEarn;
+    
     
     private float gameplayTime;
     private GameState state;
@@ -41,6 +43,13 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         GameInput.Instance.OnPause += GameInputOnPause;
+        
+        DeliveryCounter.Instance.OnDeliverySuccess += DeliveryCounterOnDeliverySuccess;
+    }
+
+    private void DeliveryCounterOnDeliverySuccess(object sender, EventArgs e)
+    {
+        gameplayTime += gameTimeEarn;
     }
 
     private void GameInputOnPause(object sender, EventArgs e)
@@ -54,7 +63,6 @@ public class GameController : MonoBehaviour
             CountinueGame();
         }
     }
-
 
     private void Update()
     {
